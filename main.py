@@ -45,6 +45,12 @@ def get_text_messages(message):
     elif txt == "/start":
         bot.send_message(message.from_user.id, 'Привет, я бот, подсказывающий погоду, где ты обитаешь?')
         bot.register_next_step_handler(message, memorize_place)
+    elif txt == "я расстроен(":
+        bot.send_message(message.from_user.id, 'Не расстраивайся! Вот тебе ауф цитата от ДЕ (точнее Черчилля):\
+                                                 "Если идёте через ад, идите, не останавливаясь."\
+                                                 Если нужна ещё читата, напиши "ещё цитату!"')
+    elif txt == "ещё цитату!":
+        bot.send_message(message.from_user.id, '"Underidoderidoderidoderidoo" - Winston Churchill')
     else:
         bot.send_message(message.from_user.id, get_weather_by_place(txt))
 
