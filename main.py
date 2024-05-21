@@ -39,9 +39,13 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id,
                          "Привет, чтобы узнать что я могу, напиши '/help', чтобы познакомиться, напиши '/start'")
     elif txt == "/help":
-        bot.send_message(message.from_user.id, "чета надо умное написать")
+        bot.send_message(message.from_user.id, "Если хочешь узнать погоду, напиши 'погода'. Если расстроила погода на\
+                             завтра, напиши 'я расстроен('")
     elif txt == 'погода':
-        bot.send_message(message.from_user.id, get_weather_by_place(my_city[message.from_user.id]))
+        try:
+            bot.send_message(message.from_user.id, get_weather_by_place(my_city[message.from_user.id]))
+        except KeyError:
+            bot.send_message(message.from_user.id, 'Кажется мы не знакомы, напиши "/start"')
     elif txt == "/start":
         bot.send_message(message.from_user.id, 'Привет, я бот, подсказывающий погоду, где ты обитаешь?')
         bot.register_next_step_handler(message, memorize_place)
